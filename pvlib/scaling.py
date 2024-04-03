@@ -1,8 +1,3 @@
-"""
-The ``scaling`` module contains functions for manipulating irradiance
-or other variables to account for temporal or spatial characteristics.
-"""
-
 import numpy as np
 import pandas as pd
 
@@ -59,8 +54,6 @@ def wvm(clearsky_index, positions, cloud_speed, dt=None):
     [3] Wavelet Variability Model - Matlab Code:
     https://pvpmc.sandia.gov/applications/wavelet-variability-model/
     """
-
-    # Added by Joe Ranalli (@jranalli), Penn State Hazleton, 2019
 
     pos = np.array(positions)
     dist = pdist(pos, 'euclidean')
@@ -129,15 +122,13 @@ def latlon_to_xy(coordinates):
     References
     ----------
     [1] H. Moritz. Geodetic Reference System 1980, Journal of Geodesy, vol. 74,
-    no. 1, pp 128–133, 2000.
+    no. 1, pp 128â€“133, 2000.
 
     [2] https://pypi.org/project/pyproj/
 
     [3] Wavelet Variability Model - Matlab Code:
     https://pvpmc.sandia.gov/applications/wavelet-variability-model/
     """
-
-    # Added by Joe Ranalli (@jranalli), Penn State Hazleton, 2019
 
     r_earth = 6371008.7714  # mean radius of Earth, in meters
     m_per_deg_lat = r_earth * np.pi / 180
@@ -148,7 +139,7 @@ def latlon_to_xy(coordinates):
     m_per_deg_lon = r_earth * np.cos(np.pi/180 * meanlat) * np.pi/180
 
     # Conversion
-    pos = coordinates * np.array(m_per_deg_lat, m_per_deg_lon)
+    pos = coordinates * np.array([m_per_deg_lat, m_per_deg_lon])
 
     # reshape as (x,y) pairs to return
     try:
@@ -188,8 +179,6 @@ def _compute_wavelet(clearsky_index, dt=None):
     [3] Wavelet Variability Model - Matlab Code:
     https://pvpmc.sandia.gov/applications/wavelet-variability-model/
     """
-
-    # Added by Joe Ranalli (@jranalli), Penn State Hazleton, 2019
 
     try:  # Assume it's a pandas type
         vals = clearsky_index.values.flatten()
