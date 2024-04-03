@@ -11,13 +11,12 @@ import os
 from urllib.request import urlopen
 import numpy as np
 import pandas as pd
+import warnings
 
-from pvlib._deprecation import deprecated
-
+from pvlib._deprecation import deprecated, pvlibDeprecationWarning
 from pvlib import (atmosphere, iam, inverter, irradiance,
                    singlediode as _singlediode, temperature)
 from pvlib.tools import _build_kwargs
-
 
 # a dict of required parameter names for each DC power model
 _DC_MODEL_PARAMS = {
